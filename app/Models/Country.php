@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Country extends Model
 {
     use HasFactory;
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
+
+    public function state()
+    {
+        return $this->hasMany(State::class);
+    }
+    
 }
