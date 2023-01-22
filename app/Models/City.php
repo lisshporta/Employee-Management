@@ -9,7 +9,7 @@ class City extends Model
 {
     use HasFactory;
 
-    public function state()
+    public function states()
     {
         return $this->belongsTo(State::class);
     }

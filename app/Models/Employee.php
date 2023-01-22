@@ -19,7 +19,7 @@ class Employee extends Model
         return $this->belongsTo(State::class);
     }
 
-    public function city()
+    public function cities()
     {
         return $this->belongsTo(City::class);
     }
