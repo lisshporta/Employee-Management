@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\EmployeeResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\EmployeeResource\RelationManagers;
+use App\Filament\Resources\EmployeeResource\Widgets\EmployeeStatsOverview;
 
 class EmployeeResource extends Resource
 {
@@ -62,7 +63,9 @@ class EmployeeResource extends Resource
                         return $state->cities->pluck('name','id');
                     })
                     ->reactive()
-                    ->afterStateUpdated(fn (callable $set) => $set('city_id ', null)),
+                    ->reactive(),
+                    Select::make('department_id')
+                            ->relationship('department', 'name')->required(),
                     TextInput::make('first_name')->required()->maxLength(255),
                     TextInput::make('last_name')->required()->maxLength(255),
                     TextInput::make('address')->required()->maxLength(255),
@@ -99,6 +102,13 @@ class EmployeeResource extends Resource
     {
         return [
             //
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            EmployeeStatsOverview::class,
         ];
     }
     
