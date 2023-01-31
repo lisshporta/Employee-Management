@@ -16,8 +16,8 @@ class EmployeeStatsOverview extends BaseWidget
 
         return [
             Card::make('All Employees', Employee::all()->count()),
-            Card::make($ks->name. ' Employees', $ks->employees_count),
-            Card::make($us->name. ' Employees', $us->employees_count),
+            Card::make('KS Employees', $ks ? $ks->employees_count : 0),
+            Card::make('US Employees', $us ? $us->employees_count : 0),
         ];
     }
 }
